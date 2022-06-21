@@ -15,7 +15,7 @@ default_args = {
 }
 
 def _queryPostgresql():
-    conn_strin g ="dbname='dataengineering' host=192.168.0.121 user='postgres' password='qlalfqjsgh'"
+    conn_string ="dbname='dataengineering' host=192.168.0.121 user='postgres' password='qlalfqjsgh'"
     conn = db.connect(conn_string)
     df = pd.read_sql("Select name, city from users", conn)
     df.to_csv('postgresqldata.csv')
