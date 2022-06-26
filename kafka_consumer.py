@@ -1,7 +1,7 @@
 from kafka import KafkaConsumer
 
-consumer = KafkaConsumer("SmartCar-Topic",
-                         bootstrap_servers="master.hadoop.com:9092,slave1.hadoop.com:9092,slave2.hadoop.com:9092",
+consumer = KafkaConsumer("peter-topic",
+                         bootstrap_servers="192.168.56.107:9092,192.168.56.108:9092,192.168.56.112:9092",
                          enable_auto_commit=True,
                          auto_offset_reset='latest')
 
@@ -12,3 +12,4 @@ def receive_message():
 if __name__=="__main__":
     receive_message()
     print("함수 실행 완료")
+
