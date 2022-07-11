@@ -21,7 +21,7 @@ class Consumer:
         chan.basic_consume(
             queue = self.__queue,
             on_message_callback = Consumer.on_message,
-            auto_ack = True
+            auto_ack = True # 메시지를 소비했을 때 자동으로 ack를 날리는 것이다. ack를 rabbitMQ에 전송하면 소비된 메시지는 제거된다.
         )
         print('Consumer is starting...')
         chan.start_consuming()
