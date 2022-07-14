@@ -7,6 +7,11 @@ def add(x, y):
 
 
 '''
+실행 하려면 Linux에서 
+celery -A tasks worker --loglevel=info 입력하면 된다.
+이 파일의 task 이름이 tasks라서 사용했고,
+
+
 정상 실행 완료.
 countdown으로 실행 순간을 미룰 수도 있다.
 
