@@ -5,32 +5,32 @@ import datetime
 
 file_data = OrderedDict()
 
-with open('temp.json', 'w', encoding='utf-8') as make_file:
-    file_data["TITLE"] = "ANALYZER TAGS"
-
-    file_data["analyzers"] = dict()
-
-    cnt = 1
-    for i in range(1, 489):
-        if len(str(cnt)) == 1:
-            house_tag = "0" + str(cnt) + "AH"
-        else:
-            house_tag = str(cnt) + "AH"
-
-        if len(str(i)) == 1:
-            file_data["analyzers"]["house"] = house_tag
-            file_data["analyzers"]["analyzer"] = house_tag[:2] + "-AT-00" + str(i)
-            json.dump(file_data, make_file, ensure_ascii=False, indent="\t")
-        elif len(str(i)) == 2:
-            file_data["analyzers"]["house"] = house_tag
-            file_data["analyzers"]["analyzer"] = house_tag[:2] + "-AT-0" + str(i)
-            json.dump(file_data, make_file, ensure_ascii=False, indent="\t")
-        else:
-            file_data["analyzers"]["house"] = house_tag
-            file_data["analyzers"]["analyzer"] = house_tag[:2] + "-AT-" + str(i)
-            json.dump(file_data, make_file, ensure_ascii=False, indent="\t")
-        if i % 10 == 0:
-            cnt += 1
+# with open('temp.json', 'w', encoding='utf-8') as make_file:
+#     file_data["TITLE"] = "ANALYZER TAGS"
+#
+#     file_data["analyzers"] = dict()
+#
+#     cnt = 1
+#     for i in range(1, 489):
+#         if len(str(cnt)) == 1:
+#             house_tag = "0" + str(cnt) + "AH"
+#         else:
+#             house_tag = str(cnt) + "AH"
+#
+#         if len(str(i)) == 1:
+#             file_data["analyzers"]["house"] = house_tag
+#             file_data["analyzers"]["analyzer"] = house_tag[:2] + "-AT-00" + str(i)
+#             json.dump(file_data, make_file, ensure_ascii=False, indent="\t")
+#         elif len(str(i)) == 2:
+#             file_data["analyzers"]["house"] = house_tag
+#             file_data["analyzers"]["analyzer"] = house_tag[:2] + "-AT-0" + str(i)
+#             json.dump(file_data, make_file, ensure_ascii=False, indent="\t")
+#         else:
+#             file_data["analyzers"]["house"] = house_tag
+#             file_data["analyzers"]["analyzer"] = house_tag[:2] + "-AT-" + str(i)
+#             json.dump(file_data, make_file, ensure_ascii=False, indent="\t")
+#         if i % 10 == 0:
+#             cnt += 1
 # json파일로 analyzer_tag, house_tag 만들기
 ###################################################################################################
 
@@ -48,8 +48,9 @@ with open('temp.json', 'r', encoding='utf-8') as read_file:
 ###################################################################################################
 
 import time
+import random
 
-status = ["Normal", "Validation", "Maintenance", "Breakdown", "Fault"]
+status = ["Normal", "Validation", "Maintenance", "Breakdown", "analyzerFault", "LowFlowAlarm", "gcCommonAlarm"]
 
 tmp = [0 for _ in range(len(analyzer_tags))]
 for k in range(42, 56):
@@ -59,13 +60,16 @@ for j in range(400, 412):
     tmp[j] = 4
 
 cnt = 0
-with open("datas/" + str(datetime.datetime.now())[:10] + "-log", "w", encoding='utf-8') as file:
-    for hour in range(24):
+with open(str(datetime.datetime.now())[:10] + "-data-log", "w", encoding='utf-8') as file:
+    for hour in range(8): # 8시간
         for min in range(60):
             for sec in range(60):
                 for idx, tag in enumerate(zip(analyzer_tags, house_tags)):
+                    value = (random.choices([0, 1, 2, 3, 4, 5, 6], [96, 0.3, 0.16, 0.05, 0.125, 0.125, 0.1]))[0]
                     file.write(
-                        "[" + str(datetime.datetime.now())[:19] + "]" + tag[1] + ", " + tag[0] + ", " + status[tmp[idx]] + "\n")
+                        str(datetime.datetime.now())[:10] + "," + str(datetime.datetime.now())[11:19] + "," + tag[1] + "," + tag[0] + "," + status[tmp[idx]] + "," +
+                        str(random.random()*10) + "," + str(random.random()*10) + "," + str(random.random()*10) + "," + str(random.random()*10) + "," + str(random.random()*10)+ "\n")
 
-                    time.sleep(1) # 1초에 한 번씩 기록되게
-                    cnt += 1
+                time.sleep(1) # 1초에 한 번씩 기록되게
+                cnt += 1
+            print(str(datetime.datetime.now())[:19], cnt) # 1분에 한 번씩 확인용
