@@ -28,4 +28,4 @@ my_data = '01010101010101010101010101010101'
 my_file = '/user/root/temp.1658890201591.log'
 HDFS_CONNECTION.append_file(my_file, my_data) # 여기서도 추가하려면 똑같은 에러가 난다.
 print("파일 추가 완료")
-
+# 리눅스에서 쓰려고 할 떄 Permission denied 권한 문제가 있는듯 하다.

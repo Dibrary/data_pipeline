@@ -9,11 +9,12 @@ client_hdfs = InsecureClient("http://192.168.56.114:50070", user='root')
 client_hdfs.delete("/test") # 폴더 삭제는 된다.
 print("폴더 삭제")
 
-client_hdfs.write("/webhdfs/test.txt", "test string")
+client_hdfs.write("/webhdfs/test.txt", "test string") # linux에서 코딩한 경우는 들어간다.
 print("데이터 한줄 추가.")
 
-with client_hdfs.read("temp.1658890201591.log", encoding='utf-8') as reader:
-    print(reader.read())
+with client_hdfs.read("/webhdfs/v1/flume/temp.1658890201591.log", encoding='utf-8') as reader:
+    print(reader.read()) # linux에서 코딩한 경우는 읽어온다.
+
     # data = pd.read_csv(reader, engine='python', encoding='utf-8', on_bad_lines='skip')
     # print(data.head())
 
