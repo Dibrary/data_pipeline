@@ -6,7 +6,7 @@ url = "192.168.56.110"
 port = 5672
 vhost = "/"
 cred = pika.PlainCredentials('temp', 'temp') # virtual host에 접근 권한이 부여된 계정 사용. (guest는 localhost에서만 가능)
-queue = '27833958-3bd5-32aa-b973-578986db8b92' # 여기서 Celery 실행으로 생긴 Queue name을 사용하면 안 들어가진다.
+queue = '4c432ff2-ca1e-3bf5-a067-727cdb9364b4' # 여기서 Celery 실행으로 생긴 Queue name을 사용하면 안 들어가진다.
 
 conn = pika.BlockingConnection(pika.ConnectionParameters(url, port, vhost, cred))
 chan = conn.channel()

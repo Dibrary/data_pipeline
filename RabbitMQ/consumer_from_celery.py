@@ -8,8 +8,8 @@ class Consumer:
         self.__port = 5672
         self.__vhost = '/'
         self.__cred = pika.PlainCredentials('temp', 'temp')
-        self.__queue = '27833958-3bd5-32aa-b973-578986db8b92'
-        # self.__queue = 'celeryev.5bb12304-ba32-4a3d-bb39-17971d466d8d'
+        self.__queue = '4c432ff2-ca1e-3bf5-a067-727cdb9364b4'
+        # self.__queue = 'celeryev.07e66fd2-b5e6-4ba1-93e7-e041b44f8a85'
         # 위 큐로는 이 문구만 계속 들어온다.Received b'{"hostname": "celery@localhost.localdomain", "utcoffset": -9, "pid": 2286, "clock": 946, "freq": 2.0, "active": 0, "processed": 6, "loadavg": [0.0, 0.02, 0.05], "sw_ident": "py-celery", "sw_ver": "5.1.2", "sw_sys": "Linux", "timestamp": 1657758444.1007519, "type": "worker-heartbeat"}'
         # <class 'bytes'>
         return
