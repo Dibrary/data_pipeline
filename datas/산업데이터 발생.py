@@ -65,7 +65,7 @@ with open(str(datetime.datetime.now())[:10] + "-data-log", "w", encoding='utf-8'
         for min in range(60):
             for sec in range(60):
                 for idx, tag in enumerate(zip(analyzer_tags, house_tags)):
-                    value = (random.choices([0, 1, 2, 3, 4, 5, 6], [96, 0.3, 0.16, 0.05, 0.125, 0.125, 0.1]))[0]
+                    value = (random.choices([0, 1, 2, 3, 4, 5, 6], [96, 2.95, 0.26, 0.025, 0.13, 0.13, 0.1]))[0]
                     file.write(
                         str(datetime.datetime.now())[:10] + "," + str(datetime.datetime.now())[11:19] + "," + tag[1] + "," + tag[0] + "," + status[tmp[idx]] + "," +
                         str(random.random()*10) + "," + str(random.random()*10) + "," + str(random.random()*10) + "," + str(random.random()*10) + "," + str(random.random()*10)+ "\n")
