@@ -6,3 +6,4 @@ s3.upload_file("status_data.csv", 'amadaslogbucket', 'logs/status_data.csv')
 
 print("업로드 완료")
 # 정상적으로 업로드 됨 확인.
+
